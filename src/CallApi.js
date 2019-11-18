@@ -16,12 +16,12 @@ state = {
      body: data
    };
 
-   fetch("https://localhost:44319/api/values", options)
+   fetch("http://localhost:8080/api/sas/FileAnalysis", options)
    .then((res) => res.json())
    .then((result) => {
        this.setState({
          isLoaded: true,
-         items: result
+         items: result.analysisReport
        });
      },
      // Note: it's important to handle errors here
@@ -39,7 +39,7 @@ render() {
     return (
       <DragAndDrop handleDrop={this.handleDrop}>
         <div style={{height: 300, width: 250}}>
-            <div><p>Calling Api</p></div>
+            <div><p>{this.state.items}</p></div>
         </div>
       </DragAndDrop>
     )
