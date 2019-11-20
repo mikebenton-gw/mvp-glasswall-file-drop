@@ -83,7 +83,6 @@ class DragAndDrop extends Component {
                 fontSize: 36
               }}
             >
-              <div>drop here :)</div>
             </div>
           </div>
         }

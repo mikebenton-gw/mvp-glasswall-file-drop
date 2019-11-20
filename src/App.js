@@ -51,16 +51,18 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <p>
-            Drag and drop a file to have it processed by the Glasswall Engine
+            Drag and drop a file to have it processed by the Glasswall d-FIRST Engine
           </p>
           <DragAndDrop handleDrop={this.handleDrop}>
-            <div style={{height: 300, width: 250}} />
+            <div style={{height: 300, width: 500}} />
           </DragAndDrop>
-          <h4>Content that was removed</h4>
+          <div className="remediations">
+            <h4>Objects & Structures that have been remediated (repaired)</h4>
+            <Items items = {this.state.remediations} />
+          </div>
+          <h4>Active content that has been sanitised (removed)</h4>
           <Items items = {this.state.sanitisations} />
-          <h4>Content that was repaired</h4>
-          <Items items = {this.state.remediations} />
-          <h4>Content that couldn't be fixed</h4>
+          <h4>Structural issues which can't be remediated</h4>
           <Items items = {this.state.issues} />
         </header>
       </div>
