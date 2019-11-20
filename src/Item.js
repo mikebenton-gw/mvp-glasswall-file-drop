@@ -5,7 +5,7 @@ class Item extends Component {
     const item = this.props.item;
     return(
       <div>
-        {item.children[0].value}
+        <td>{item.children[0].value}</td>
       </div>
     )
   }

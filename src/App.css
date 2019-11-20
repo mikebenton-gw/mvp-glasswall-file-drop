@@ -28,3 +28,15 @@
 .dropBorderDragging {
   border-radius: 25px;
 }
+
+table, th {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  padding-left: 10px;
+  text-align: left;
+}

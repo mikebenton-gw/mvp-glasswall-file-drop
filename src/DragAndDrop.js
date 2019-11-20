@@ -63,7 +63,7 @@ class DragAndDrop extends Component {
           <div class="dropBorderDragging"
             style={{
               border: 'dashed grey 4px',
-              backgroundColor: 'rgba(255,255,255,.8)',
+              backgroundColor: 'rgba(63, 191, 127, 0.3)',
               position: 'absolute',
               top: 0,
               bottom: 0,
@@ -79,7 +79,6 @@ class DragAndDrop extends Component {
                 right: 0,
                 left: 0,
                 textAlign: 'center',
-                color: 'grey',
                 fontSize: 36
               }}
             >

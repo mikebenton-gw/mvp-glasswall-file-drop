@@ -50,20 +50,40 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <p>
-            Drag and drop a file to have it processed by the Glasswall d-FIRST Engine
-          </p>
+          <p>Drag and drop a file to have it processed by the Glasswall d-FIRST Engine</p>
+
           <DragAndDrop handleDrop={this.handleDrop}>
             <div style={{height: 300, width: 500}} />
           </DragAndDrop>
+          <br />
           <div className="remediations">
-            <h4>Objects & Structures that have been remediated (repaired)</h4>
-            <Items items = {this.state.remediations} />
+          <table>
+            <tr>
+              <th>Objects & Structures that have been remediated (repaired)</th>
+            </tr>
+            <tr>
+              <Items items = {this.state.remediations} />
+            </tr>
+          </table>
           </div>
-          <h4>Active content that has been sanitised (removed)</h4>
-          <Items items = {this.state.sanitisations} />
-          <h4>Structural issues which can't be remediated</h4>
-          <Items items = {this.state.issues} />
+          <br />
+          <table>
+            <tr>
+              <th>Active content that has been sanitised (removed)</th>
+            </tr>
+            <tr>
+              <Items items = {this.state.sanitisations} />
+            </tr>
+          </table>
+          <br />
+          <table>
+            <tr>
+              <th>Structural issues which can't be remediated</th>
+              </tr>
+              <tr>
+                <Items items = {this.state.issues} />
+            </tr>
+          </table>
         </header>
       </div>
     );
