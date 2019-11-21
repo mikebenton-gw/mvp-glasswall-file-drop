@@ -55,18 +55,22 @@ class App extends React.Component {
           <DragAndDrop handleDrop={this.handleDrop}>
             <div style={{height: 300, width: 500}} />
           </DragAndDrop>
+
           <br />
+
           <div className="remediations">
-          <table>
-            <tr>
-              <th>Objects & Structures that have been remediated (repaired)</th>
-            </tr>
-            <tr>
-              <Items items = {this.state.remediations} />
-            </tr>
-          </table>
+            <table>
+              <tr>
+                <th>Objects & Structures that have been remediated (repaired)</th>
+              </tr>
+              <tr>
+                <Items items = {this.state.remediations} />
+              </tr>
+            </table>
           </div>
+
           <br />
+
           <table>
             <tr>
               <th>Active content that has been sanitised (removed)</th>
@@ -75,13 +79,15 @@ class App extends React.Component {
               <Items items = {this.state.sanitisations} />
             </tr>
           </table>
+
           <br />
+
           <table>
             <tr>
               <th>Structural issues which can't be remediated</th>
-              </tr>
-              <tr>
-                <Items items = {this.state.issues} />
+            </tr>
+            <tr>
+              <Items items = {this.state.issues} />
             </tr>
           </table>
         </header>
