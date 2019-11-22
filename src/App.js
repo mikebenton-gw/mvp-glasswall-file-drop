@@ -15,7 +15,7 @@ class App extends React.Component {
     var data = new FormData();
     data.append('file', file[0]);
 
-    fetch("http://glasswall-file-drop-engine.uksouth.azurecontainer.io/api/sas/FileAnalysis", {
+    fetch("https://glasswall-file-drop-api.azurewebsites.net/api/sas/FileAnalysis", {
     method: 'POST',
     body: data})
     .then((res) => res.json())
