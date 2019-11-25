@@ -51,7 +51,7 @@ class DragAndDrop extends Component {
   }
   render() {
     return (
-      <div class="dropBorder"
+      <div className="dropBorder"
         style={{
           display: 'inline-block',
            position: 'relative',
@@ -60,7 +60,7 @@ class DragAndDrop extends Component {
         ref={this.dropRef}
       >
         {this.state.drag &&
-          <div class="dropBorderDragging"
+          <div className="dropBorderDragging"
             style={{
               border: 'dashed grey 4px',
               backgroundColor: 'rgba(63, 191, 127, 0.3)',

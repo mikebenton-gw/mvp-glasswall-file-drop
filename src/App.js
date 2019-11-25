@@ -1,16 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import DragAndDrop from './DragAndDrop'
-import DownloadFile from './DownloadFile'
-import RenderAnalysis from './RenderAnalysis'
+import RenderResults from './RenderResults'
 
 class App extends React.Component {
   state = {
     file: "",
-    sanitisations: [],
-    issues: [],
-    remediations: []
+    analysisReport: ""
   }
 
   handleDrop = (file) => {
@@ -29,15 +25,10 @@ class App extends React.Component {
     .then((result) => {
         var XMLParser = require('react-xml-parser');
         var xml = new XMLParser().parseFromString(result.analysisReport);    // Assume xmlText contains the example XML
-        var sanitisations = xml.getElementsByTagName('gw:SanitisationItem');
-        var remediations = xml.getElementsByTagName('gw:RemedyItem');
-        var issues = xml.getElementsByTagName('gw:IssueItem');
 
         this.setState({
           isLoaded: true,
-          sanitisations: sanitisations,
-          remediations: remediations,
-          issues: issues
+          analysisReport: xml
         });
 
       },
@@ -62,8 +53,8 @@ class App extends React.Component {
           <DragAndDrop handleDrop={this.handleDrop}>
             <div style={{height: 300, width: 500}} />
           </DragAndDrop>
-          <DownloadFile file = {this.state.file} issues={this.state.issues}/>
-          <RenderAnalysis file={this.state.file} remediations={this.state.remediations} sanitisations={this.state.sanitisations} issues={this.state.issues}/>
+
+          <RenderResults file={this.state.file} analysisReport={this.state.analysisReport} />
         </header>
       </div>
     );

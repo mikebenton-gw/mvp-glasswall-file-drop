@@ -1,12 +1,7 @@
 import React from 'react';
 
 class DownloadFile extends React.Component {
-
-	constructor(props) {
-		super(props);
-	}
-
-	downloadEmployeeData = () => {
+	getProtectedFile = () => {
     var data = new FormData();
     data.append('file', this.props.file);
 
@@ -28,10 +23,10 @@ class DownloadFile extends React.Component {
     const file = this.props.file;
 
     if (file !== null && file !== undefined && file !== "") {
-      if (!this.props.issues.length) {
+      if (!this.props.hasIssues) {
         return(
           <div className="downloadFileBtn">
-            <button onClick={this.downloadEmployeeData}>Download Protected File</button>
+            <button onClick={this.getProtectedFile}>Download Protected File</button>
           </div>
           )}
 
