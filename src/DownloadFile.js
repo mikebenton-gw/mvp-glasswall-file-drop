@@ -25,13 +25,21 @@ class DownloadFile extends React.Component {
 	}
 
 	render() {
-		return (
-			<div id="container">
-				<button onClick={this.downloadEmployeeData}>Download Protected File</button>
-			</div>
-		)
-	}
+    const file = this.props.file;
 
+    if (file !== null && file !== undefined && file !== "") {
+      if (!this.props.issues.length) {
+        return(
+          <div className="downloadFileBtn">
+            <button onClick={this.downloadEmployeeData}>Download Protected File</button>
+          </div>
+          )}
+
+          return <div className="hasIssues"><p>Unable to protect file due to structual issues</p></div>
+      }
+
+      return null;
+   }
 }
 
 export default DownloadFile;

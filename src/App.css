@@ -40,3 +40,7 @@ td {
   padding-left: 10px;
   text-align: left;
 }
+
+.hasIssues{
+  color: red;
+}

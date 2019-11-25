@@ -2,8 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import DragAndDrop from './DragAndDrop'
-import Items from './Items'
 import DownloadFile from './DownloadFile'
+import RenderAnalysis from './RenderAnalysis'
 
 class App extends React.Component {
   state = {
@@ -62,7 +62,8 @@ class App extends React.Component {
           <DragAndDrop handleDrop={this.handleDrop}>
             <div style={{height: 300, width: 500}} />
           </DragAndDrop>
-          <RenderResults file={this.state.file} remediations={this.state.remediations} sanitisations={this.state.sanitisations} issues={this.state.issues}/>
+          <DownloadFile file = {this.state.file} issues={this.state.issues}/>
+          <RenderAnalysis file={this.state.file} remediations={this.state.remediations} sanitisations={this.state.sanitisations} issues={this.state.issues}/>
         </header>
       </div>
     );
@@ -70,44 +71,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-function RenderResults(props) {
-  const file = props.file;
-  if (file !== null && file !== undefined && file !== "") {
-    return(
-      <div>
-      <DownloadFile file = {props.file}/>
-
-      <br />
-
-        <table>
-          <tr>
-            <th>Objects & Structures that have been remediated (repaired)</th>
-          </tr>
-          <tr>
-            <Items items = {props.remediations} />
-          </tr>
-        </table>
-        <br />
-        <table>
-          <tr>
-            <th>Active content that has been sanitised (removed)</th>
-          </tr>
-          <tr>
-            <Items items = {props.sanitisations} />
-          </tr>
-        </table>
-        <br />
-        <table>
-          <tr>
-            <th>Structural issues which can't be remediated</th>
-          </tr>
-          <tr>
-            <Items items = {props.issues} />
-          </tr>
-        </table>
-    </div>)
-  }
-
-  return null;
-}
