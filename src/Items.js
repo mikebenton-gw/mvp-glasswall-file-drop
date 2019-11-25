@@ -3,11 +3,7 @@ import Item from './Item'
 
 class Items extends Component {
   render(){
-    return(
-      <div class="items">
-        {this.props.items.map(item => <Item item={item} />)}
-      </div>
-    )
+    return this.props.items.map(item => <Item key={item.children[0].value} item={item} />);
   }
 }
 

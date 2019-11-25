@@ -7,34 +7,40 @@ class RenderAnalysis extends React.Component {
       <div className="analysisResults">
         <div className="remediationsTable">
           <table>
-            <tr>
-              <th>Objects & Structures that have been remediated (repaired)</th>
-            </tr>
-            <tr>
+            <thead>
+              <tr>
+                <th>Objects & Structures that have been remediated (repaired)</th>
+              </tr>
+            </thead>
+            <tbody>
               <Items items = {this.props.remediations} />
-            </tr>
+            </tbody>
           </table>
         </div>
         <br />
         <div className="sanitisationTable">
           <table>
-            <tr>
-              <th>Active content that has been sanitised (removed)</th>
-            </tr>
-            <tr>
+            <thead>
+              <tr>
+                <th>Active content that has been sanitised (removed)</th>
+              </tr>
+            </thead>
+            <tbody>
               <Items items = {this.props.sanitisations} />
-            </tr>
+            </tbody>
           </table>
         </div>
         <br />
         <div className="issuesTable">
           <table>
+            <thead>
             <tr>
               <th>Structural issues which can't be remediated</th>
             </tr>
-            <tr>
+            </thead>
+            <tbody>
               <Items items = {this.props.issues} />
-            </tr>
+            </tbody>
           </table>
         </div>
       </div>)

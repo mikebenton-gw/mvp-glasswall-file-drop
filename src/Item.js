@@ -4,9 +4,11 @@ class Item extends Component {
   render(){
     const item = this.props.item;
     return(
-      <div className="item">
-        <td>{item.children[0].value}</td>
-      </div>
+        <tr>
+          <td>
+            {item.children[0].value}
+          </td>
+        </tr>
     )
   }
 }
