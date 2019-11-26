@@ -49,11 +49,9 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <p>Drag and drop a file to have it processed by the Glasswall d-FIRST Engine</p>
-
           <DragAndDrop handleDrop={this.handleDrop}>
             <div style={{height: 300, width: 500}} />
           </DragAndDrop>
-
           <RenderResults file={this.state.file} analysisReport={this.state.analysisReport} />
         </header>
       </div>

@@ -19,22 +19,16 @@ class DownloadFile extends React.Component {
 		});
 	}
 
-	render() {
-    const file = this.props.file;
-
-    if (file !== null && file !== undefined && file !== "") {
-      if (!this.props.hasIssues) {
-        return(
-          <div className="downloadFileBtn">
-            <button onClick={this.getProtectedFile}>Download Protected File</button>
-          </div>
-          )}
-
-          return <div className="hasIssues"><p>Unable to protect file due to structual issues</p></div>
-      }
-
-      return null;
-   }
+  render() {
+    if (this.props.hasIssues) {
+      return <div className="hasIssues"><p>Unable to protect file due to structual issues</p></div>
+    }
+    return(
+      <div className="downloadFileBtn">
+        <button onClick={this.getProtectedFile}>Download Protected File</button>
+      </div>
+      )
+    }
 }
 
 export default DownloadFile;
