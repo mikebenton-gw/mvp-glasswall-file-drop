@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import DragAndDrop from './DragAndDrop'
 import RenderResults from './RenderResults'
+import logo from './logo.svg';
 
 class App extends React.Component {
   state = {
@@ -48,12 +49,15 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
+          <div className="logo"><img src={logo} alt="Logo" height="90" /></div>
+        </header>
+        <body className="App-body">
           <p>Drag and drop a file to have it processed by the Glasswall d-FIRST Engine</p>
           <DragAndDrop handleDrop={this.handleDrop}>
             <div style={{height: 300, width: 500}} />
           </DragAndDrop>
           <RenderResults file={this.state.file} analysisReport={this.state.analysisReport} />
-        </header>
+        </body>
       </div>
     );
   }
