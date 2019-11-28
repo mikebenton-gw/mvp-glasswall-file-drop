@@ -8,15 +8,24 @@ class DownloadFile extends React.Component {
     fetch("https://glasswall-file-drop-api.azurewebsites.net/api/sas/FileProtect", {
       method: 'POST',
       body: data})
-			.then(response => {
-				response.blob().then(blob => {
+			.then((response) => {
+	      if (response.ok) {
+	        return response.blob()
+	      }
+	      else {
+	        throw new Error('Something went wrong');
+	      }
+	    })
+			.then(blob => {
 					let url = window.URL.createObjectURL(blob);
 					let a = document.createElement('a');
 					a.href = url;
 					a.download = this.props.file.name;
 					a.click();
-				});
-		});
+				})
+			.catch((error) => {
+					console.log(error)
+				})
 	}
 
   render() {

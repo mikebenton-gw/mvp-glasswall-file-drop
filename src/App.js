@@ -11,38 +11,33 @@ class App extends React.Component {
   }
 
   handleDrop = (file) => {
-
-    this.setState({
-      file: file[0]
-    });
-
     var data = new FormData();
     data.append('file', file[0]);
 
     fetch("https://glasswall-file-drop-api.azurewebsites.net/api/sas/FileAnalysis", {
     method: 'POST',
     body: data})
-    .then((res) => res.json())
+    .then((response) => {
+      if (response.ok) {
+        return response.json()
+      }
+      else {
+        throw new Error('Something went wrong');
+      }
+    })
     .then((result) => {
         var XMLParser = require('react-xml-parser');
-        var xml = new XMLParser().parseFromString(result.analysisReport);    // Assume xmlText contains the example XML
+        var xml = new XMLParser().parseFromString(result.analysisReport);
 
         this.setState({
           isLoaded: true,
-          analysisReport: xml
+          analysisReport: xml,
+          file: file[0]
         });
-
-      },
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      }
-    )
+      })
+      .catch((error) => {
+        console.log(error)
+      });
    }
 
   render() {

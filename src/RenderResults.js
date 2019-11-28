@@ -12,12 +12,18 @@ class RenderResults extends React.Component {
         var remediations = analysisReport.getElementsByTagName('gw:RemedyItem');
         var issues = analysisReport.getElementsByTagName('gw:IssueItem');
 
-        return(
-          <div className="analysisResults">
-            <DownloadFile file = {file} hasIssues = {issues.length} />
-            <br />
-            <RenderAnalysis remediations={remediations} sanitisations={sanitisations} issues={issues} />
-          </div>)
+				if (sanitisations.length || remediations.length || issues.length)
+				{
+					return(
+						<div className="analysisResults">
+							<DownloadFile file = {file} hasIssues = {issues.length} />
+							<br />
+							<RenderAnalysis remediations={remediations} sanitisations={sanitisations} issues={issues} />
+						</div>)
+				}
+				else {
+					return <div className="isClean"><p>File is clean!</p></div>;
+				}
       }
 
       return null;

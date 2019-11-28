@@ -40,21 +40,25 @@
   border-radius: 25px;
 }
 
-table, th {
+table {
   border: 1px solid grey;
-  border-collapse: collapse;
+  border-collapse: separate;
   padding: 10px;
   text-align: left;
   font-size: calc(10px + 2vmin);
 }
 
-td {
+td, th{
   padding-left: 10px;
   text-align: left;
 }
 
 .hasIssues{
   color: red;
+}
+
+.isClean{
+  color: green;
 }
 
 .logo{
