@@ -1,31 +1,24 @@
 import React from 'react';
+import { trackPromise } from 'react-promise-tracker';
+import { engineApi } from './api/engineApi';
 
 class DownloadFile extends React.Component {
 	getProtectedFile = () => {
     var data = new FormData();
     data.append('file', this.props.file);
 
-    fetch("https://glasswall-file-drop-api.azurewebsites.net/api/sas/FileProtect", {
-      method: 'POST',
-      body: data})
-		.then((response) => {
-      if (response.ok) {
-        return response.blob()
-      }
-      else {
-        throw new Error('Something went wrong');
-      }
-    })
-		.then(blob => {
+		trackPromise(
+      engineApi.protectFile(data)
+			.then(blob => {
 				let url = window.URL.createObjectURL(blob);
 				let a = document.createElement('a');
 				a.href = url;
 				a.download = this.props.file.name;
 				a.click();
-		})
-		.catch((error) => {
-				console.log(error)
-		})
+			})
+			.catch((error) => {
+					console.log(error)
+			}))
 	}
 
   render() {

@@ -3,6 +3,9 @@ import './App.css';
 import DragAndDrop from './DragAndDrop'
 import RenderResults from './RenderResults'
 import logo from './logo.svg';
+import { trackPromise } from 'react-promise-tracker';
+import { engineApi } from './api/engineApi';
+import LoadingIndicator from './LoadingIndicator';
 
 class App extends React.Component {
   state = {
@@ -14,18 +17,9 @@ class App extends React.Component {
     var data = new FormData();
     data.append('file', file[0]);
 
-    fetch("https://glasswall-file-drop-api.azurewebsites.net/api/sas/FileAnalysis", {
-    method: 'POST',
-    body: data})
-    .then((response) => {
-      if (response.ok) {
-        return response.json()
-      }
-      else {
-        throw new Error('Something went wrong');
-      }
-    })
-    .then((result) => {
+    trackPromise(
+      engineApi.analyseFile(data)
+      .then((result) => {
         var XMLParser = require('react-xml-parser');
         var xml = new XMLParser().parseFromString(result.analysisReport);
 
@@ -37,7 +31,7 @@ class App extends React.Component {
       })
       .catch((error) => {
         console.log(error)
-      });
+      }));
    }
 
   render() {
@@ -46,11 +40,16 @@ class App extends React.Component {
         <header className="App-header">
           <div className="logo"><img src={logo} alt="Logo" height="90" /></div>
         </header>
+
         <body className="App-body">
           <p>Drag and drop a file to have it processed by the Glasswall d-FIRST Engine</p>
+          
           <DragAndDrop handleDrop={this.handleDrop}>
-            <div style={{height: 300, width: 500}} />
+            <div style={{height: 300, width: 500}} >
+              <LoadingIndicator />
+            </div>
           </DragAndDrop>
+
           <RenderResults file={this.state.file} analysisReport={this.state.analysisReport} />
         </body>
       </div>
