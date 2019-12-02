@@ -21,7 +21,7 @@ class FileAttributes extends React.Component {
             </tr>
             <tr>
               <td>Type: </td>
-              <td>{this.props.file.type}</td>
+              <td>{this.props.fileType}</td>
             </tr>
           </tbody>
         </table>

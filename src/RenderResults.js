@@ -20,6 +20,7 @@ class RenderResults extends React.Component {
         var sanitisations = analysisReport.getElementsByTagName('gw:SanitisationItem');
         var remediations = analysisReport.getElementsByTagName('gw:RemedyItem');
         var issues = analysisReport.getElementsByTagName('gw:IssueItem');
+				var fileType = analysisReport.getElementsByTagName('gw:FileType')[0].value;
 
 				if (sanitisations.length || remediations.length || issues.length)
 				{
@@ -27,7 +28,7 @@ class RenderResults extends React.Component {
 						<div className="analysisResults">
 							<DownloadFile file = {file} hasIssues = {issues.length} />
 							<br />
-							<FileAttributes file = {file} />
+							<FileAttributes file = {file} fileType = {fileType} />
 							<br />
 							<RenderAnalysis remediations={remediations} sanitisations={sanitisations} issues={issues} />
 						</div>)
