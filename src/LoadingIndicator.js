@@ -7,7 +7,7 @@ function LoadingIndicator(props) {
   return(
     promiseInProgress &&
     <div className="loader">
-      <Loader type="ThreeDots" color="#286286" height="100" width="100" />
+      <Loader type="ThreeDots" color="#286286" height={100} width={100} />
     </div>);
 }
 

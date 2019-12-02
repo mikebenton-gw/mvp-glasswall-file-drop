@@ -1,11 +1,20 @@
 import React from 'react';
 import RenderAnalysis from './RenderAnalysis'
 import DownloadFile from './DownloadFile'
+import FileAttributes from './FileAttributes'
 
 class RenderResults extends React.Component {
 	render() {
       const file = this.props.file;
       const analysisReport = this.props.analysisReport;
+			const validation = this.props.validation;
+
+			if (validation !== null && validation !== undefined && validation !== "") {
+					return(
+						<div className="validationErrors">
+							<p>{validation}</p>
+						</div>)
+	      }
 
       if ((file !== null && file !== undefined && file !== "") && (analysisReport !== null && analysisReport !== undefined && analysisReport !== "")) {
         var sanitisations = analysisReport.getElementsByTagName('gw:SanitisationItem');
@@ -18,11 +27,16 @@ class RenderResults extends React.Component {
 						<div className="analysisResults">
 							<DownloadFile file = {file} hasIssues = {issues.length} />
 							<br />
+							<FileAttributes file = {file} />
+							<br />
 							<RenderAnalysis remediations={remediations} sanitisations={sanitisations} issues={issues} />
 						</div>)
 				}
 				else {
-					return <div className="isClean"><p>File is clean!</p></div>;
+					return (<div className="isClean">
+						<p>File is clean!</p>
+						<FileAttributes file = {file} />
+					</div>)
 				}
       }
 
