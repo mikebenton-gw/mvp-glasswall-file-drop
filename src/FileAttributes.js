@@ -3,13 +3,9 @@ import React from 'react';
 class FileAttributes extends React.Component {
 	render() {
     return(
-      <div className="FileAttributes">
+      <div className="file-attributes table-container">
+        <h1 className="table-header">File Attributes</h1>
         <table>
-          <thead>
-            <tr>
-              <th>File Attributes</th>
-            </tr>
-          </thead>
           <tbody>
             <tr>
               <td>File Name: </td>

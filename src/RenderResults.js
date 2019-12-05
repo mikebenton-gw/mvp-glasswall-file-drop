@@ -12,7 +12,9 @@ class RenderResults extends React.Component {
 			if (validation !== null && validation !== undefined && validation !== "") {
 					return(
 						<div className="validationErrors">
-							<p>{validation}</p>
+							<p>
+								{validation}
+							</p>
 						</div>)
 	      }
 
@@ -25,7 +27,7 @@ class RenderResults extends React.Component {
 				if (sanitisations.length || remediations.length || issues.length)
 				{
 					return(
-						<div className="analysisResults">
+						<div className="analysis-results">
 							<DownloadFile file = {file} hasIssues = {issues.length} />
 							<br />
 							<FileAttributes file = {file} fileType = {fileType} />
@@ -34,10 +36,10 @@ class RenderResults extends React.Component {
 						</div>)
 				}
 				else {
-					return (<div className="isClean">
-						<p>File is clean!</p>
-						<FileAttributes file = {file} />
-					</div>)
+					return (<section className="is-clean">
+								<h1>File is clean!</h1>
+								<FileAttributes file = {file} />
+							</section>)
 				}
       }
 

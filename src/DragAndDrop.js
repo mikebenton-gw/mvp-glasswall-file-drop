@@ -51,10 +51,10 @@ class DragAndDrop extends Component {
   }
   render() {
     return (
-      <div className="dropBorder" ref={this.dropRef}>
+      <div className="drop-border" ref={this.dropRef}>
         {
           this.state.drag &&
-          <div className="dropBorderDragging"/>
+          <div className="drop-border-dragging"/>
         }
         {this.props.children}
       </div>

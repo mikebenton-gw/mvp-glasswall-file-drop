@@ -6,11 +6,14 @@ import logo from './logo.svg';
 import { trackPromise } from 'react-promise-tracker';
 import { engineApi } from './api/engineApi';
 import LoadingIndicator from './LoadingIndicator';
+import { CSSTransition } from 'react-transition-group';
 
 const initialState = {
   file: "",
   analysisReport: "",
-  validation: ""
+  validation: "",
+  fileProcessed: false,
+  loading: false
 };
 
 class App extends React.Component {
@@ -41,7 +44,8 @@ class App extends React.Component {
 
         this.setState({
           analysisReport: xml,
-          file: file[0]
+          file: file[0],
+          fileProcessed: true,
         });
       })
       .catch((error) => {
@@ -50,21 +54,26 @@ class App extends React.Component {
    }
 
   render() {
+    const results = <RenderResults key={5} file={this.state.file} analysisReport={this.state.analysisReport} validation={this.state.validation}/> ;
+    const spinner = <LoadingIndicator key={6} /> ;
+
     return (
-      <div className="App">
-        <div className="App-header">
+      <div className="app">
+        <div className="app-header">
           <div className="logo"><img src={logo} alt="Logo" height="90" /></div>
         </div>
 
-        <div className="App-body">
-          <p>Drag and drop a file to have it processed by the Glasswall d-FIRST Engine</p>
+        <div className="app-body">
+          <h1>Drag and drop a file to have it processed by the Glasswall d-FIRST Engine</h1>
 
           <DragAndDrop handleDrop={this.handleDrop}>
-            <div style={{height: 300, width: 500}} >
-              <LoadingIndicator />
+            <div className="loading-container">
+                    {spinner}
             </div>
           </DragAndDrop>
-          <RenderResults file={this.state.file} analysisReport={this.state.analysisReport} validation={this.state.validation}/>
+          <CSSTransition in={this.state.fileProcessed} timeout={500} classNames="results">
+                {results}
+          </CSSTransition>   
         </div>
       </div>
     );

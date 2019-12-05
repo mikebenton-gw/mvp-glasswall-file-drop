@@ -4,40 +4,28 @@ import Items from './Items'
 class RenderAnalysis extends React.Component {
 	render() {
     return(
-      <div className="analysisResults">
-        <div className="remediationsTable">
+      <div className="analysis-results">
+        <div className="remediationsTable table-container">
+          <h1 className="table-header">Objects & Structures that have been remediated (repaired)</h1>
           <table>
-            <thead>
-              <tr>
-                <th>Objects & Structures that have been remediated (repaired)</th>
-              </tr>
-            </thead>
             <tbody>
               <Items items = {this.props.remediations} />
             </tbody>
           </table>
         </div>
         <br />
-        <div className="sanitisationTable">
+        <div className="sanitisationTable table-container">
+        <h1 className="table-header">Active content that has been sanitised (removed)</h1>
           <table>
-            <thead>
-              <tr>
-                <th>Active content that has been sanitised (removed)</th>
-              </tr>
-            </thead>
             <tbody>
               <Items items = {this.props.sanitisations} />
             </tbody>
           </table>
         </div>
         <br />
-        <div className="issuesTable">
+        <div className="issuesTable table-container">
+        <h1 className="table-header">Structural issues which can't be remediated</h1>
           <table>
-            <thead>
-            <tr>
-              <th>Structural issues which can't be remediated</th>
-            </tr>
-            </thead>
             <tbody>
               <Items items = {this.props.issues} />
             </tbody>

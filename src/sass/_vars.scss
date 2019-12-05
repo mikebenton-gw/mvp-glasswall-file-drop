@@ -1,0 +1,42 @@
+// --- Palette --- //
+$white : hsl(0,0,100%);
+$black : hsl(0,0,0%);
+$paleGrey : hsl(195, 9%, 91%);
+$mediumGrey : hsl(210, 15%, 75%);
+$charcoalGrey : hsl(0, 0%, 39%);
+$blueGrey : hsl(198, 14%, 82%);
+$mediumBlue : hsl(205, 74, 18%);
+$seaBlue : hsl(195, 39%, 47%);
+$skyBlue : hsl(191, 80%, 76%);
+$mediumTurquoise : hsl(196, 67%, 30%);
+$turquoiseHighlight : hsl(183, 76%, 62%);
+$burntOrange :hsl(27, 53%, 62%);
+$coral : hsl(357, 44%, 71%);
+$frogGreen : hsl(117, 28%, 56%);
+$warningRed : #d47779;
+$greyBlue : hsl(200, 19%, 69%);
+
+// --- Main Layout Colours --- //
+$mainTextColour : darken($charcoalGrey, 5%);
+$backgroundColour : $paleGrey;
+$gradientColour1 : $mediumBlue;
+$gradientColour2 : $mediumTurquoise;
+
+
+$headerHeight : 10rem;
+
+// --- Buttons --- //
+$buttonTextColour : $white;
+$buttonBGColour : $seaBlue;
+$buttonHeight : 3.6rem;
+$buttonHoverBackgroundColour : lighten($seaBlue, 45%);
+
+// --- Shadows --- //
+$boxShadow1 : 0px 2px 5px 0px rgba(0,0,0,0.15);
+
+// --- Transitions --- //
+$transition1 : all 0.3s ease-in-out;
+$whiteoutColour : $backgroundColour;
+
+
+$mainSpinnerColour : $mediumTurquoise;

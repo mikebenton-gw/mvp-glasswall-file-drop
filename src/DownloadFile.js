@@ -23,11 +23,11 @@ class DownloadFile extends React.Component {
 
   render() {
     if (this.props.hasIssues) {
-      return <div className="hasIssues"><p>Unable to protect file due to structual issues</p></div>
+      return <div className="has-issues"><h1>Unable to protect file due to structual issues</h1></div>
     }
     return(
-      <div className="downloadFileBtn">
-        <button onClick={this.getProtectedFile}>Download Protected File</button>
+      <div className="download-file-button">
+        <button className="button button-filled button-icon center" onClick={this.getProtectedFile}>Download Protected File</button>
       </div>
       )
     }
