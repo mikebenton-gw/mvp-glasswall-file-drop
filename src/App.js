@@ -5,8 +5,8 @@ import RenderResults from './RenderResults'
 import logo from './logo.svg';
 import { trackPromise } from 'react-promise-tracker';
 import { engineApi } from './api/engineApi';
+import { fileTypeDetectionApi } from './api/fileTypeDetectionApi';
 import LoadingIndicator from './LoadingIndicator';
-import Modal from './Modal';
 import { CSSTransition } from 'react-transition-group';
 
 const initialState = {
@@ -14,9 +14,10 @@ const initialState = {
   analysisReport: "",
   validation: "",
   fileProcessed: false,
-  loading: false,
-  showModal: false
+  loading: false
 };
+
+const unsupportedTypes = ["Unknown", "FileIssues", "BufferIssues", "InternalIssues", "LicenseExpired", "PasswordProtectedOpcFile"]
 
 class App extends React.Component {
   state = initialState;
@@ -25,52 +26,69 @@ class App extends React.Component {
     this.setState(initialState);
   }
 
-  openModal = () => {
-    this.setState({
-      showModal: true
+  checkFileSize(file){
+    if (file.size > 20000000){
+      this.setState({
+        validation: "Please use a file under 20MB"
+      })
+    }
+  }
+
+  checkFileType = (data) => {
+    return fileTypeDetectionApi.getFileType(data)
+    .then((result) => {
+        if(unsupportedTypes.includes(result.fileType))
+        {
+          this.setState({
+            validation: "Please use a supported file type"
+          })
+        }
     })
-  }  
+  }
 
   handleDrop = (file) => {
     this.resetState();
 
-    if (file[0].size > 20000000){
-      this.setState({
-        validation: "Please use a file under 20MB"
-      })
-      return;
-    }
-
     var data = new FormData();
     data.append('file', file[0]);
 
-    trackPromise(
-      engineApi.analyseFile(data)
-      .then((result) => {
-        var XMLParser = require('react-xml-parser');
-        var xml = new XMLParser().parseFromString(result.analysisReport);
+    this.checkFileSize(file[0]);
+    
+    if (this.state.validation !== ""){
+      return;
+    }
 
-        this.setState({
-          analysisReport: xml,
-          file: file[0],
-          fileProcessed: true,
+    trackPromise(
+      this.checkFileType(data)
+      .then(() => {
+        if (this.state.validation !== ""){
+          return;
+        }
+        engineApi.analyseFile(data)
+        .then((result) => {
+          var XMLParser = require('react-xml-parser');
+          var xml = new XMLParser().parseFromString(result.analysisReport);
+
+          this.setState({
+            analysisReport: xml,
+            file: file[0],
+            fileProcessed: true,
+          });
+        })
+        .catch((error) => {
+          console.log(error)
         });
-      })
-      .catch((error) => {
-        console.log(error)
-      }));
+    }))
    }
 
   render() {
     const results = <RenderResults key={5} file={this.state.file} analysisReport={this.state.analysisReport} validation={this.state.validation}/> ;
     const spinner = <LoadingIndicator key={6} /> ;
-    const modal =  <Modal modalState={this.state.showModal} key={7}/>
 
     return (
       <div className="app">
         <div className="app-header">
           <div className="logo"><img src={logo} alt="Logo" height="90" /></div>
-          <button onClick={this.openModal}></button>
         </div>
 
         <div className="app-body">
@@ -83,13 +101,9 @@ class App extends React.Component {
           </DragAndDrop>
           <CSSTransition in={this.state.fileProcessed} timeout={500} classNames="results">
                 {results}
-          </CSSTransition>   
+          </CSSTransition>
         </div>
-        <CSSTransition in={this.state.showModal} timeout={500} classNames="modal">
-           {modal}
-        </CSSTransition> 
       </div>
-      
     );
   }
 }
