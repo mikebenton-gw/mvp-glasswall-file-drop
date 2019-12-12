@@ -53,33 +53,34 @@ class App extends React.Component {
     data.append('file', file[0]);
 
     this.checkFileSize(file[0]);
-    
+
     if (this.state.validation !== ""){
       return;
     }
 
-    trackPromise(
-      this.checkFileType(data)
-      .then(() => {
-        if (this.state.validation !== ""){
-          return;
-        }
-        engineApi.analyseFile(data)
-        .then((result) => {
-          var XMLParser = require('react-xml-parser');
-          var xml = new XMLParser().parseFromString(result.analysisReport);
+   trackPromise(
+    this.checkFileType(data)
+    .then(() => {
+      if (this.state.validation !== ""){
+        return;
+      }
 
-          this.setState({
-            analysisReport: xml,
-            file: file[0],
-            fileProcessed: true,
-          });
-        })
-        .catch((error) => {
-          console.log(error)
+      return engineApi.analyseFile(data)
+    })
+    .then((result) => {
+        var XMLParser = require('react-xml-parser');
+        var xml = new XMLParser().parseFromString(result.analysisReport);
+
+        this.setState({
+          analysisReport: xml,
+          file: file[0],
+          fileProcessed: true,
         });
+    })
+    .catch((error) => {
+        console.log(error)
     }))
-   }
+ }
 
   render() {
     const results = <RenderResults key={5} file={this.state.file} analysisReport={this.state.analysisReport} validation={this.state.validation}/> ;
