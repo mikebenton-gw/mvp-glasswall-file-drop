@@ -4,28 +4,24 @@ class Modal extends React.Component {
 
   render() {
 
-    if (this.props.modalState === true) {
     return(
         <div className="modal-overlay file-details-modal">
           <section className="modal-container">
               <header className="modal-header">
-                  <div>About</div>
+                  <h1>About</h1>
               </header>
-              <div classNAme="modal-contents">
+              <div className="modal-contents">
 
               </div>
               <footer className="modal-footer tabset-modal-file-details-footer">
-                  <button tabindex="-1" className="button button-filled button-icon icon-export">Export</button>*@
+                  <button tabIndex="-1" className="button button-filled" onClick={this.props.onClose}>OK</button>
               </footer>
-              <button tabindex="-1" className="modal-close-button close-modal"></button>
+              <button tabIndex="-1" className="modal-close-button close-modal"  onClick={this.props.onClose}></button>
           </section>
         </div>
     )
   }
-    else {
-      return null;
-    }
-  }
+
 }
 
 export default Modal;

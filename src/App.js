@@ -7,6 +7,7 @@ import { trackPromise } from 'react-promise-tracker';
 import { engineApi } from './api/engineApi';
 import { fileTypeDetectionApi } from './api/fileTypeDetectionApi';
 import LoadingIndicator from './LoadingIndicator';
+import Modal from './Modal';
 import { CSSTransition } from 'react-transition-group';
 
 const initialState = {
@@ -14,7 +15,8 @@ const initialState = {
   analysisReport: "",
   validation: "",
   fileProcessed: false,
-  loading: false
+  loading: false,
+  showModal: false
 };
 
 const unsupportedTypes = ["Unknown", "FileIssues", "BufferIssues", "InternalIssues", "LicenseExpired", "PasswordProtectedOpcFile"]
@@ -24,6 +26,13 @@ class App extends React.Component {
 
   resetState(){
     this.setState(initialState);
+  }
+
+
+  toggleModal = () => {
+    this.setState({
+      showModal: !this.state.showModal
+    });
   }
 
   checkFileSize(file){
@@ -82,13 +91,13 @@ class App extends React.Component {
    }
 
   render() {
-    const results = <RenderResults key={5} file={this.state.file} analysisReport={this.state.analysisReport} validation={this.state.validation}/> ;
-    const spinner = <LoadingIndicator key={6} /> ;
 
     return (
+      <React.Fragment>
       <div className="app">
         <div className="app-header">
           <div className="logo"><img src={logo} alt="Logo" height="90" /></div>
+          <button class="info-button" onClick={this.toggleModal}></button>
         </div>
 
         <div className="app-body">
@@ -96,14 +105,18 @@ class App extends React.Component {
 
           <DragAndDrop handleDrop={this.handleDrop}>
             <div className="loading-container">
-                    {spinner}
+                  <LoadingIndicator key={6} />
             </div>
           </DragAndDrop>
-          <CSSTransition in={this.state.fileProcessed} timeout={500} classNames="results">
-                {results}
-          </CSSTransition>
+            <CSSTransition in={this.state.fileProcessed} timeout={{enter: 500, exit: 500}} classNames="results" unmountOnExit>
+                  <RenderResults key={5} file={this.state.file} analysisReport={this.state.analysisReport} validation={this.state.validation}/>
+            </CSSTransition>
         </div>
       </div>
+            <CSSTransition in={this.state.showModal} timeout={500} classNames="modal"  unmountOnExit>
+                  <Modal onClose={this.toggleModal} key={7}/>
+            </CSSTransition> 
+          </React.Fragment>
     );
   }
 }

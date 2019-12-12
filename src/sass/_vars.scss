@@ -22,6 +22,11 @@ $backgroundColour : $paleGrey;
 $gradientColour1 : $mediumBlue;
 $gradientColour2 : $mediumTurquoise;
 
+// --- Fonts --- //
+$headerFont--regular : 'montserratregular', sans-serif;
+$bodyFont--condensed : 'robotocondensed', sans-serif;
+$bodyFont--regular : 'robotoregular', sans-serif;
+$bodyFontSize : 1.3rem;
 
 $headerHeight : 10rem;
 
@@ -38,5 +43,32 @@ $boxShadow1 : 0px 2px 5px 0px rgba(0,0,0,0.15);
 $transition1 : all 0.3s ease-in-out;
 $whiteoutColour : $backgroundColour;
 
-
 $mainSpinnerColour : $mediumTurquoise;
+
+// --- Modals --- //
+$modalOverlayBGColour : transparentize(hsl(199, 20%, 40%), 0.2);
+$modalContainerWidth : 94vw;
+$modalContainerMaxWidth : 80rem;
+$modalContainerMinHeight : 43rem;
+$modalHeaderHeight: 5rem;
+$modalFormElementsContainerWidth--0-plus : 80%;
+$modalFormElementsContainerWidth--sm-plus : 40%;
+$modalFooterHeight: 7rem;
+$modalBackgroundColor : $white;
+$modalHeaderFont-size : 1.8rem;
+$modalHeaderTextColour : $mediumBlue;
+$modalHeaderWarningColour : $warningRed;
+$modalHeaderBackgroundColour : lighten($backgroundColour, 3%);
+$modalFooterBackgroundColour : lighten($backgroundColour, 3%);
+
+$closeIcon : 'modal-close.svg';
+
+// --- Standard Border --- //
+$borderColour1 : $mediumGrey;
+$border1 : $borderColour1 1px solid;
+
+$borderColour2 : $paleGrey;
+$border2 : $borderColour2 1px solid;
+
+// --- Border Radius --- //
+$borderRadius1 : 0.6rem;

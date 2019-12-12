@@ -40,12 +40,12 @@ body {
   transform: translateY(0);
 }
 
-.results-leave {
+.results-exit {
   opacity: 1;
   transform: translateY(0);
 }
 
-.results-leave.results-leave-active {
+.results-exit.results-exit-active {
   opacity: 0.01;
   transition: all 500ms ease-in;
   transform: translateY(3rem);
@@ -220,7 +220,7 @@ th {
 .loading-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: 3s all;
+  transition: 0.5s all;
 }
 
 .loading-exit {
@@ -231,5 +231,36 @@ th {
 .loading-exit-active {
   transform: translateY(4rem);
   opacity: 0;
-  transition: 3s all;
+  transition: 0.5s all;
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transition: 0.5s all;
+}
+
+.modal-enter-done {
+  opacity: 1;
+}
+
+.modal-exit {
+  opacity: 1;
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transition: 0.5s all;
+}
+
+.info-button {
+ width: 10rem;
+ height: 10rem;
+ position: absolute;
+  right: 0;
+  top: 0;
+  background: transparent url(../src/img/info-icon.svg) center center no-repeat;
 }
