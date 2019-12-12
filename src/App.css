@@ -49,6 +49,47 @@ button {
 .button-filled {
   background-color: #498fa7; }
 
+button {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  user-select: none; }
+
+.button {
+  display: block;
+  min-width: 9rem;
+  height: 3.6rem;
+  padding: 0 2rem;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  line-height: 3.6rem;
+  color: white;
+  border-radius: 3px;
+  transition: all 0.3s; }
+  .button.left {
+    margin-right: auto; }
+  .button:hover {
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15); }
+  .button.center {
+    margin: 3rem auto; }
+  .button:disabled {
+    opacity: 0.6;
+    pointer-events: none; }
+
+.button-icon {
+  background-image: url("img/download-icon-white.svg");
+  background-size: 3.2rem 3.2rem;
+  background-position: left center;
+  background-repeat: no-repeat;
+  min-width: 0;
+  padding: 0 1.4rem 0 3.4rem;
+  text-align: left; }
+
+.button-filled {
+  background-color: #498fa7; }
+
 @keyframes spinner {
   0% {
     transform: rotateZ(0deg); }

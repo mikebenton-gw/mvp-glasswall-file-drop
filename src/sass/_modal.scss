@@ -1,0 +1,555 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $modalOverlayBGColour;
+    opacity: 0;
+    transition: all 0.5s;
+    z-index: z(modal);
+  }
+  
+  .modal-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -20%);
+    width: $modalContainerWidth;
+    height: 96vh;
+    max-width: $modalContainerMaxWidth;
+    min-height: $modalContainerMinHeight;
+    overflow: hidden;
+    background-color: $modalBackgroundColor;
+    opacity: 0;
+    border-radius: $borderRadius1;
+    box-shadow: $boxShadow1;
+    transition: opacity 0.3s, transform 0.3s, width 0.1s;
+  
+    form {
+      height: 100%;
+    }
+  
+    .form-elements-container {
+      width: $modalFormElementsContainerWidth--0-plus;
+      padding-top: 3rem;
+      margin: 0 auto;
+    }
+  }
+  
+  .file-details-title {
+    display: none;
+  }
+  
+  .modal-header {
+    height: $modalHeaderHeight;
+    background-color: $modalHeaderBackgroundColour;
+    color: $modalHeaderTextColour;
+    border-radius: $borderRadius1;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 0 1rem;
+  
+    h1 {
+      @extend %ellipsis;
+      float: left;
+      width: calc(100% - 14rem);
+      margin: 0;
+      padding: 0;
+      font-weight: normal;
+      font-size: 1.6rem;
+      line-height: $modalHeaderHeight;
+      font-family: $headerFont--regular;
+    }
+  }
+  
+  .modal-close-button, .popup-close-button {
+    width: $modalHeaderHeight;
+    height: $modalHeaderHeight;
+    position: absolute;
+    right: 0;
+    top: 0;
+    filter: blur(0);
+    background: transparent url('../img/'+ $closeIcon + '') center center no-repeat;
+    background-size: 1.7rem 1.7rem;
+  }
+  
+  .popup-close-button {
+    width: 4.2rem;
+    height: 4.2rem;
+    background-size: 1.4rem 1.4rem;
+  }
+  
+  .modal-open {
+    .modal-overlay {
+      opacity: 1;
+    }
+  
+    .modal-container {
+      transform: translate(-50%, -50%);
+      transition: all 0.5s;
+      opacity: 1;
+    }
+  
+    .prompt-popup {
+      transition: all 0.5s;
+      opacity: 1;
+    }
+  }
+  
+  .modal-contents {
+    position: relative;
+    height: calc(100% - #{$modalHeaderHeight} - #{$modalFooterHeight});
+    transition: all 0.3s ease-out;
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    height: $modalFooterHeight;
+    padding: 2rem 2rem 0;
+    background-color: $modalFooterBackgroundColour;
+    transition: all 0.2s 0.2s;
+  
+    &.single-central-button {
+      justify-content: space-around;
+      align-items: center;
+      height: auto;
+      padding: 0;
+    }
+  }
+  
+  .file-details-upper {
+    display: flex;
+    height: $fileDetailsUpperHeight;
+    border-bottom: $border1;
+    transition: opacity 0.3s 0.3s, height 0s 0.2s;
+  }
+  
+  .file-details-text {
+    @extend %ellipsis;
+    display: flex;
+    flex-direction: column;
+    line-height: 2rem;
+    width: 33%;
+    text-align: center;
+    padding: 0.4rem 1rem;
+  
+    span {
+      @extend %ellipsis;
+    }
+  }
+  
+  .file-details-main-wrapper {
+    position: absolute;
+    height: calc(100% - 5rem);
+    width: 100%;
+  }
+  
+  .file-details-main {
+    transform: translate(0,2rem);
+    width: 100%;
+  /*   height: calc(100% - #{$fileDetailsUpperHeight}); */
+    padding: 0 1rem !important;
+  /*   overflow-y: auto;
+    overflow-x: hidden; */
+    opacity: 0;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  
+    &.show {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  
+    .accordion-content {
+      padding: 0 1rem 1rem 1rem;
+      background-color: $modalAccordionBackgroundColour;
+    }
+  
+    table {
+      table-layout: fixed;
+    }
+  }
+  
+  .actions-container {
+    height: 100%;
+    opacity: 0;
+    transform: translateY(3rem);
+    transition: all 0.3s;
+  
+    .select2 {
+      width: 100% !important;
+    }
+  }
+  
+  .action-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  
+  .actions {
+    .file-details-upper {
+      height: 0;
+      opacity: 0;
+      transition: opacity 0.2s, height 0s 0.1s;
+    }
+  
+    .modal-footer {
+      transform: translate3d(0,$modalFooterHeight,0);
+      transition: $transition1;
+    }
+  
+    .actions-container {
+      transform: translateY(0);
+      opacity: 1;
+      transition: transform 0.3s 0.1s, opacity 0.6s 0.1s;
+    }
+  }
+  
+  .modal-file-outcome {
+    display: block;
+    position: absolute;
+    right: 0;
+    margin-right: $modalHeaderHeight;
+    margin-top: 1.4rem;
+    line-height: $modalFileOutcomeHeight--0-plus;
+    padding: 0 1rem;
+    font-family: $headerFont--regular;
+    font-size: $modalFileOutcomeFontSize--0-plus;
+    border-radius: 2rem;
+    text-transform: uppercase;
+  }
+  
+  .action-content {
+    width: 70%;
+    transform: translateY(-4vh);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+  
+    h2 {
+      margin-bottom: 3rem;
+      font-family: $headerFont--regular;
+      font-size: $modalActionFontSize;
+      font-weight: normal;
+      line-height: 2.4rem;
+      text-align: center;
+    }
+  
+    p {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+  
+    .action-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4rem;
+    }
+  
+    &.show {
+      opacity: 1;
+    }
+  
+    input[type="text"] {
+      width: 100%;
+    }
+  }
+  
+  .delete-confirm-container {
+    width: $deleteConfirmWidth--0-plus;
+  }
+  
+  .file-details-modal {
+  
+    .modal-container {
+      height: $fileDetailsHeight;
+    }
+  
+    .spinner-container {
+      top: 30%;
+    }
+  
+    .modal-contents, .file-details-title, #fileName, .modal-file-outcome, .modal-footer button {
+      pointer-events: all;
+    }
+  
+    .loading {
+  
+      .modal-contents, .file-details-title, #fileName, .modal-file-outcome, .modal-footer button {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  
+  }
+  
+  .message-modal {
+    .modal-container {
+      height: auto;
+      min-height: auto;
+      max-height: 85vh;
+      min-width: 80vw;
+      max-width: 95vw;
+    }
+  
+    h1.warning {
+      color: $modalHeaderWarningColour;
+    }
+  
+    h2 {
+      margin: 0 3rem 3rem;
+      text-align: center;
+      font-family: $headerFont--regular;
+      font-weight: normal;
+      font-size: $messageModalFontSize;
+      line-height: 2rem;
+    }
+  
+    .message-modal-contents {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      margin: 3rem auto 4rem;
+      padding: 0 1rem;
+      
+      &.mesage-modal-table-contents {
+        padding: 0 2rem;
+      }
+  
+      h2:not(.mobile-view), .delete-modal-table {
+        display: none;
+      }
+  
+      ul {
+        max-height: 30vh;
+        overflow: auto;
+      }
+  
+      li {
+        @extend %ellipsis;
+        max-width: 55rem;
+      }
+    }
+  
+    .users-name {
+      font-weight: 700;
+    }
+  
+    .groups-name {
+      font-size: $messageModalFontSize;
+    }
+  
+    .message-modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 4rem;
+      padding: 2rem;
+    }
+  }
+  
+  .working {
+  
+    .action-contents-wrapper,
+    .cancel-button,
+    .modal-header {
+      opacity: 0.5;
+    }
+  }
+  
+  .success-container,
+  .error-container {
+  
+    transform: translateY(5rem);
+  
+    &.show {
+      transform: translateY(-4vh);
+  
+      .button.ok-button {
+        transform: translateY(0);
+      }
+    }
+  
+    h2 {
+  
+      &::before {
+        @extend %after;
+        display: inline-block;
+        position: relative;
+        top: 0.5rem;
+        left: -0.8rem;
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+    }
+  
+    p {
+      text-align: center;
+    }
+  
+    button.ok-button {
+      margin-top: 5rem;
+      transform: translateY(4rem);
+    }
+  }
+  
+  .success-container {
+  
+    h2::before {
+      background: transparent url('../img/' + $modalSuccess) center center no-repeat;
+      background-size: 2.4rem 2.4rem;
+    }
+  }
+  
+  .error-container {
+  
+    h2::before {
+      background: transparent url('../img/' + $modalError) center center no-repeat;
+      background-size: 2.4rem 2.4rem;
+    }
+  }
+  
+  .delete-success-container {
+  
+    h2::before {
+      background: transparent url('../img/' + $modalDeleteSuccess) center center no-repeat;
+      background-size: 2.4rem 2.4rem;
+    }
+  }
+  
+  .deny-success-container {
+  
+    h2::before {
+      background: transparent url('../img/' + $modalDeniedSuccess) center center no-repeat;
+      background-size: 2.4rem 2.4rem;
+    }
+  }
+  
+  .change-password-modal .modal-container {
+    height: $passwordModalHeight;
+    max-width: 70rem;
+  }
+  
+  .accordion-toggle .total-count {
+    display: inline-block;
+    position: absolute;
+    right: 4rem;
+    top: 0.4rem;
+    margin-left: 1rem;
+    padding: 0 0.7rem;
+    background-color: $fileDetailsCountBackgroundColour;
+    color: $fileDetailsCountTextColour;
+    font-size: $fileDetailsCountFontSize;
+    line-height: 2rem;
+    border: 2px solid $white;
+    border-radius: 1.4rem;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+    opacity: 1;
+    transition: all 0.4s;
+  }
+  
+  .accordion-toggle.open .total-count {
+    transform: translateX(2rem);
+    opacity: 0;
+  }
+  
+  // --- Breakpoints --- //
+  
+  
+  @mixin modal--sm {
+  
+    .file-details-title {
+      display: inline;
+    }
+  
+    .file-details-text {
+      display: block;
+      line-height: $fileDetailsUpperHeight;
+      padding: 0 1rem;
+    }
+  
+    .delete-confirm-container {
+      width: $deleteConfirmWidth--sm-plus;
+    }
+  
+    .action-content {
+      width: 60%;
+    }
+    .message-modal .modal-container {
+      width: auto;
+    }
+    
+    .modal-container {
+      
+      height: 50rem;
+  
+      .form-elements-container {
+        width: $modalFormElementsContainerWidth--sm-plus;
+        padding-top: 5rem;
+        margin: 0 auto;
+      }
+  
+      .message-modal-contents {
+      h2:not(.mobile-view) {
+        display:inline;
+      }
+  
+      .delete-modal-table {
+        display: table;
+      }
+    }
+  
+  
+      h2.mobile-view {
+        display: none;
+      }
+  
+    }
+  }
+  
+  
+  @mixin modal--md {
+  
+    .modal-header {
+      padding: 0 2rem;
+  
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  
+    .modal-file-outcome {
+      margin-top: 1.2rem;
+      line-height: $modalFileOutcomeHeight--md-plus;
+      padding: 0 2rem;
+      font-family: $headerFont--regular;
+      font-size: $modalFileOutcomeFontSize--md-plus;
+    }
+  
+    .action-content {
+      width: 40%;
+    }
+  }
+  
+  
+  @mixin modal--lg {
+  
+    .delete-confirm-container {
+  
+      .action-footer {
+        margin: 5rem 4rem 0 4rem;
+      }
+    }
+  
+    .modal-container {
+      max-width: 120rem;
+    }
+  
+    .message-modal {
+      .modal-container {
+        min-width: 80rem;
+      }
+    }
+  }

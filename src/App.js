@@ -6,6 +6,7 @@ import logo from './logo.svg';
 import { trackPromise } from 'react-promise-tracker';
 import { engineApi } from './api/engineApi';
 import LoadingIndicator from './LoadingIndicator';
+import Modal from './Modal';
 import { CSSTransition } from 'react-transition-group';
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
   analysisReport: "",
   validation: "",
   fileProcessed: false,
-  loading: false
+  loading: false,
+  showModal: false
 };
 
 class App extends React.Component {
@@ -22,6 +24,12 @@ class App extends React.Component {
   resetState(){
     this.setState(initialState);
   }
+
+  openModal = () => {
+    this.setState({
+      showModal: true
+    })
+  }  
 
   handleDrop = (file) => {
     this.resetState();
@@ -56,11 +64,13 @@ class App extends React.Component {
   render() {
     const results = <RenderResults key={5} file={this.state.file} analysisReport={this.state.analysisReport} validation={this.state.validation}/> ;
     const spinner = <LoadingIndicator key={6} /> ;
+    const modal =  <Modal modalState={this.state.showModal} key={7}/>
 
     return (
       <div className="app">
         <div className="app-header">
           <div className="logo"><img src={logo} alt="Logo" height="90" /></div>
+          <button onClick={this.openModal}></button>
         </div>
 
         <div className="app-body">
@@ -75,7 +85,11 @@ class App extends React.Component {
                 {results}
           </CSSTransition>   
         </div>
+        <CSSTransition in={this.state.showModal} timeout={500} classNames="modal">
+           {modal}
+        </CSSTransition> 
       </div>
+      
     );
   }
 }
