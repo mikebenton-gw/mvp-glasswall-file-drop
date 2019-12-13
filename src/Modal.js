@@ -5,13 +5,13 @@ class Modal extends React.Component {
   render() {
 
     return(
-        <div className="modal-overlay file-details-modal">
-          <section className="modal-container">
+        <div className="modal-overlay file-details-modal" onClick={this.props.onClose}>
+          <section className="modal-container" onClick={this.props.containerClick}>
               <header className="modal-header">
                   <h1>About</h1>
               </header>
               <div className="modal-contents">
-
+                  <p>Putting some text in the modal</p>
               </div>
               <footer className="modal-footer tabset-modal-file-details-footer">
                   <button tabIndex="-1" className="button button-filled" onClick={this.props.onClose}>OK</button>

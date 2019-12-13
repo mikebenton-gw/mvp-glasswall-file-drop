@@ -35,6 +35,10 @@ class App extends React.Component {
     });
   }
 
+  handleContainerClick = event => {
+    event.stopPropagation();
+  }
+
   checkFileSize(file){
     if (file.size > 20000000){
       this.setState({
@@ -114,7 +118,7 @@ class App extends React.Component {
         </div>
       </div>
             <CSSTransition in={this.state.showModal} timeout={500} classNames="modal"  unmountOnExit>
-                  <Modal onClose={this.toggleModal} key={7}/>
+                  <Modal onClose={this.toggleModal} containerClick={this.handleContainerClick} key={7}/>
             </CSSTransition> 
           </React.Fragment>
     );

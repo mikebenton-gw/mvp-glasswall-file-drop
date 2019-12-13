@@ -95,7 +95,11 @@
   
   .modal-contents {
     position: relative;
-    height: calc(100% - #{$modalHeaderHeight} - #{$modalFooterHeight});
+    height: calc(100% - #{$modalHeaderHeight} - #{$modalFooterHeight} - 4rem);
+    padding: 2rem 4rem;
+    font-size: 1.4rem;
+    overflow-y: auto;
+    overflow-x: hidden;
     transition: all 0.3s ease-out;
   }
   
