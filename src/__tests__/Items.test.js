@@ -19,4 +19,24 @@ describe("Items", () => {
     const wrapper = shallow(<Items items={mockItems} />);
     expect(wrapper).toMatchSnapshot();
   });
+
+  it("contains an Item component for each Item", () => {
+    const wrapper = shallow(<Items items={mockItems} />);
+    expect(wrapper.find("Item")).toHaveLength(mockItems.length);
+  })
+
+  it("returns null when there is no data to map", () => {
+    const wrapper = shallow(<Items />);
+    expect(wrapper).toMatchSnapshot();
+  })
+
+  it("doesn't break without items", () => {
+    const wrapper = shallow(<Items />);
+    expect(wrapper.find("Item")).toHaveLength(0);
+  })
+
+  it("doesn't break with empty items", () => {
+    const wrapper = shallow(<Items items={[]} />);
+    expect(wrapper.find("Item")).toHaveLength(0);
+  })
 })

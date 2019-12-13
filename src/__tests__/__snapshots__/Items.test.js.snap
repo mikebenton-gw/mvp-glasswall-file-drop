@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Items matches snapshot 1`] = `ShallowWrapper {}`;
+
+exports[`Items returns null when there is no data to map 1`] = `ShallowWrapper {}`;
