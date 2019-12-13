@@ -101,7 +101,7 @@ class App extends React.Component {
       <div className="app">
         <div className="app-header">
           <div className="logo"><img src={logo} alt="Logo" height="90" /></div>
-          <button class="info-button" onClick={this.toggleModal}></button>
+          <button className="info-button" onClick={this.toggleModal} style={{'display': 'none'}}></button>
         </div>
 
         <div className="app-body">
