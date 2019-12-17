@@ -113,7 +113,7 @@ class App extends React.Component {
                   <LoadingIndicator key={6} />
             </div>
           </DragAndDrop>
-            <CSSTransition in={this.state.fileProcessed} timeout={{enter: 500, exit: 500}} classNames="results" unmountOnExit>
+            <CSSTransition in={this.state.fileProcessed} timeout={{enter: 500, exit: 500}} classNames="results">
                   <RenderResults key={5} file={this.state.file} analysisReport={this.state.analysisReport} validation={this.state.validation}/>
             </CSSTransition>
         </div>
