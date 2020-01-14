@@ -1,11 +1,11 @@
-import React from 'react';
-import Enzyme, { shallow } from "enzyme";
-import Item from '../Item';
+import React from "react";
+import Enzyme, {shallow} from "enzyme";
+import Item from "../components/Item";
 import Adapter from "enzyme-adapter-react-16";
 
-Enzyme.configure({ adapter: new Adapter() });
+Enzyme.configure({adapter: new Adapter()});
 
-const mockItem = { children: ["Hello", "World"] };
+const mockItem = {children: ["Hello", "World"]};
 
 describe("Item", () => {
   it("renders without crashing", () => {
@@ -20,7 +20,12 @@ describe("Item", () => {
 
   it("contains a tr", () => {
     const wrapper = shallow(<Item item={mockItem} />);
-    expect(wrapper.contains(<tr><td>{mockItem.children[0].value}</td></tr>)).toBe(true);
-  })
-
-})
+    expect(
+      wrapper.contains(
+        <tr>
+          <td>{mockItem.children[0].value}</td>
+        </tr>
+      )
+    ).toBe(true);
+  });
+});
