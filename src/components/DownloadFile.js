@@ -1,6 +1,6 @@
 import React from 'react';
 import { trackPromise } from 'react-promise-tracker';
-import { engineApi } from './api/engineApi';
+import { engineApi } from '../api/engineApi';
 
 class DownloadFile extends React.Component {
 	getProtectedFile = () => {
