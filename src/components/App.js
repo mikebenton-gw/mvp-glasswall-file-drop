@@ -105,49 +105,25 @@ class App extends React.Component {
       <React.Fragment>
         <div className="app">
           <div className="app-header">
-            <div className="logo">
-              <img src={logo} alt="Logo" height="90" />
-            </div>
-            <button
-              className="info-button"
-              onClick={this.toggleModal}
-              style={{display: "none"}}></button>
+            <div className="logo"><img src={logo} alt="Logo" height="90" /></div>
+            <button className="info-button" onClick={this.toggleModal} style={{display: "none"}}></button>
           </div>
 
           <div className="app-body">
-            <h1>
-              Drag and drop a file to have it processed by the Glasswall d-FIRST
-              Engine
-            </h1>
+            <h1>Drag and drop a file to have it processed by the Glasswall d-FIRST Engine</h1>
 
             <DragAndDrop handleDrop={this.handleDrop}>
               <div className="loading-container">
                 <LoadingIndicator key={6} />
               </div>
             </DragAndDrop>
-            <CSSTransition
-              in={this.state.fileProcessed}
-              timeout={{enter: 500, exit: 500}}
-              classNames="results">
-              <RenderResults
-                key={5}
-                file={this.state.file}
-                analysisReport={this.state.analysisReport}
-                validation={this.state.validation}
-              />
+            <CSSTransition in={this.state.fileProcessed} timeout={{enter: 500, exit: 500}} classNames="results">
+              <RenderResults key={5} file={this.state.file} analysisReport={this.state.analysisReport} validation={this.state.validation}/>
             </CSSTransition>
           </div>
         </div>
-        <CSSTransition
-          in={this.state.showModal}
-          timeout={500}
-          classNames="modal"
-          unmountOnExit>
-          <Modal
-            onClose={this.toggleModal}
-            containerClick={this.handleContainerClick}
-            key={7}
-          />
+        <CSSTransition in={this.state.showModal} timeout={500} classNames="modal" unmountOnExit>
+          <Modal onClose={this.toggleModal} containerClick={this.handleContainerClick} key={7}/>
         </CSSTransition>
       </React.Fragment>
     );
