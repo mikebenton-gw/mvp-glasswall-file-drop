@@ -4,11 +4,8 @@ import { engineApi } from '../api/engineApi';
 
 class DownloadFile extends React.Component {
 	getProtectedFile = () => {
-    var data = new FormData();
-    data.append('file', this.props.file);
-
 		trackPromise(
-      engineApi.protectFile(data)
+      engineApi.protectFile(this.props.file)
 			.then(blob => {
 				let url = window.URL.createObjectURL(blob);
 				let a = document.createElement('a');

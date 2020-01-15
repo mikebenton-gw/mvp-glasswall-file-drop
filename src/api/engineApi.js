@@ -1,22 +1,28 @@
-const urlPrefix = 'https://glasswall-file-drop-api.azurewebsites.net'
+const urlPrefix = 'http://localhost:8080'
 const analysisSuffix = '/api/sas/FileAnalysis';
 const protectSuffix = '/api/sas/FileProtect';
 
 const analyseFile = (file) => {
+    var data = new FormData();
+    data.append("file", file);
+
     var url = urlPrefix + analysisSuffix;
-    return callFileAnalysis(url, file);
+    return callFileAnalysis(url, data);
 }
 
 const protectFile = (file) => {
+    var data = new FormData();
+    data.append("file", file);
+
     var url = urlPrefix + protectSuffix;
-    return callFileProtect(url, file);
+    return callFileProtect(url, data);
 }
 
-const callFileAnalysis = (url, file) => {
+const callFileAnalysis = (url, data) => {
   const promise = new Promise((resolve, reject) => {
       resolve(fetch(url, {
         method: 'POST',
-        body: file
+        body: data
       })
       .then ((response) => {
         if (response.ok) {
@@ -31,11 +37,11 @@ const callFileAnalysis = (url, file) => {
   return promise;
 }
 
-const callFileProtect = (url, file) => {
+const callFileProtect = (url, data) => {
   const promise = new Promise((resolve, reject) => {
       resolve(fetch(url, {
         method: 'POST',
-        body: file
+        body: data
       })
       .then ((response) => {
         if (response.ok) {

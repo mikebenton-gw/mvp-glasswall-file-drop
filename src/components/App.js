@@ -5,10 +5,10 @@ import RenderResults from "./RenderResults";
 import logo from "../logo.svg";
 import {trackPromise} from "react-promise-tracker";
 import {engineApi} from "../api/engineApi";
-import {fileTypeDetectionApi} from "../api/fileTypeDetectionApi";
 import LoadingIndicator from "./LoadingIndicator";
 import Modal from "./Modal";
 import {CSSTransition} from "react-transition-group";
+import {fileActions} from "../actions/fileActions";
 
 const initialState = {
   file: "",
@@ -18,15 +18,6 @@ const initialState = {
   loading: false,
   showModal: false
 };
-
-const unsupportedTypes = [
-  "Unknown",
-  "FileIssues",
-  "BufferIssues",
-  "InternalIssues",
-  "LicenseExpired",
-  "PasswordProtectedOpcFile"
-];
 
 class App extends React.Component {
   state = initialState;
@@ -45,46 +36,24 @@ class App extends React.Component {
     event.stopPropagation();
   };
 
-  checkFileSize(file) {
-    if (file.size > 20000000) {
-      this.setState({
-        validation: "Please use a file under 20MB"
-      });
-    }
-  }
-
-  checkFileType = data => {
-    return fileTypeDetectionApi.getFileType(data).then(result => {
-      if (unsupportedTypes.includes(result.fileType)) {
-        this.setState({
-          validation: "Please use a supported file type"
-        });
-      }
-    });
-  };
-
   handleDrop = file => {
     this.resetState();
 
-    var data = new FormData();
-    data.append("file", file[0]);
-
-    this.checkFileSize(file[0]);
-
-    if (this.state.validation !== "") {
+    if(!fileActions.validFileSize(file[0])){
+      this.setState({validation: "Please use a file under 20MB"});
       return;
     }
 
     trackPromise(
-      this.checkFileType(data)
-        .then(() => {
-          if (this.state.validation !== "") {
-            return;
-          }
+      fileActions.validFileType(file[0]).then(result => {
+        if (!result){
+          this.setState({validation: "Please use a supported file type"});
+          return;
+        }
 
-          return engineApi.analyseFile(data);
-        })
-        .then(result => {
+        return engineApi.analyseFile(file[0])
+      })
+      .then(result => {
           var XMLParser = require("react-xml-parser");
           var xml = new XMLParser().parseFromString(result.analysisReport);
 
@@ -93,10 +62,10 @@ class App extends React.Component {
             file: file[0],
             fileProcessed: true
           });
-        })
-        .catch(error => {
-          console.log(error);
-        })
+      })
+      .catch(error => {
+        console.log(error);
+      })
     );
   };
 

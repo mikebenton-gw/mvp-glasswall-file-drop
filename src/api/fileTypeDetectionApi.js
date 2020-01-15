@@ -2,15 +2,18 @@ const urlPrefix = 'https://glasswall-file-drop-detection-api.azurewebsites.net'
 const fileTypeDetectionSuffix = '/api/sas/FileTypeDetection';
 
 const getFileType = (file) => {
+    var data = new FormData();
+    data.append("file", file);
+
     var url = urlPrefix + fileTypeDetectionSuffix;
-    return callFileTypeDetection(url, file);
+    return callFileTypeDetection(url, data);
 }
 
-const callFileTypeDetection = (url, file) => {
+const callFileTypeDetection = (url, data) => {
   const promise = new Promise((resolve, reject) => {
       resolve(fetch(url, {
         method: 'POST',
-        body: file
+        body: data
       })
       .then ((response) => {
         if (response.ok) {
