@@ -1,4 +1,4 @@
-const urlPrefix = 'http://localhost:8080'
+const urlPrefix = 'https://glasswall-file-drop-api.azurewebsites.net'
 const analysisSuffix = '/api/sas/FileAnalysis';
 const protectSuffix = '/api/sas/FileProtect';
 
