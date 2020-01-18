@@ -36,4 +36,5 @@ Note that these links only work if you have access to the Azure account used to 
 
 ## Related twitter threads
 
- - How to move a GitHub repo https://twitter.com/DinisCruz/status/1218441951898411008
+ - [How to move a GitHub repo](https://twitter.com/DinisCruz/status/1218441951898411008)
+ - [File drop stats from Azure (18th Jan)](https://twitter.com/DinisCruz/status/1218448503145484288)
