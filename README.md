@@ -33,3 +33,7 @@ Deployment is handled via Azure DevOps pipelines. Upon pushing to master a Build
 Note that these links only work if you have access to the Azure account used to host the demo version
 - [Account stats](https://portal.azure.com/#@glasswallsolutions.com/resource/subscriptions/b091e1a3-5af3-482d-b245-5734af84f707/resourceGroups/glasswall-drop-website/providers/microsoft.insights/components/glasswall-file-drop-api201911291050/overview)
 - [Analysis reports of file droppped](https://portal.azure.com/#blade/Microsoft_Azure_Storage/ContainerMenuBlade/overview/storageAccountId/%2Fsubscriptions%2Fb091e1a3-5af3-482d-b245-5734af84f707%2FresourceGroups%2Fglasswall-drop-website%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Fglasswallfiledrop/path/analysisreports/etag/%220x8D798374EB9ACEE%22)
+
+## Related twitter threads
+
+ - How to move a GitHub repo https://twitter.com/DinisCruz/status/1218441951898411008
