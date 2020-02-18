@@ -1,19 +1,22 @@
-const urlPrefix = 'https://glasswall-file-drop-detection-api.azurewebsites.net'
-const fileTypeDetectionSuffix = '/api/sas/FileTypeDetection';
+const urlPrefix = 'https://72zql7ms4e.execute-api.eu-west-1.amazonaws.com/beta'
+const fileTypeDetectionSuffix = '/file-type-detection';
 
-const getFileType = (file) => {
+const getFileType = (apikey, file) => {
     var data = new FormData();
     data.append("file", file);
 
     var url = urlPrefix + fileTypeDetectionSuffix;
-    return callFileTypeDetection(url, data);
+    return callFileTypeDetection(url, apikey, data);
 }
 
-const callFileTypeDetection = (url, data) => {
+const callFileTypeDetection = (url, apikey, data) => {
   const promise = new Promise((resolve, reject) => {
       resolve(fetch(url, {
         method: 'POST',
-        body: data
+        body: data,
+        headers: {
+          "x-api-key": apikey
+        }
       })
       .then ((response) => {
         if (response.ok) {

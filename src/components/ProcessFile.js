@@ -19,6 +19,10 @@ const initialState = {
 class ProcessFile extends React.Component {
   state = initialState;
 
+  onApiKeyChange = event => {
+      this.setState({apiKey: event.target.value});
+  }
+
   resetState() {
     this.setState(initialState);
   }
@@ -32,7 +36,7 @@ class ProcessFile extends React.Component {
     }
 
     trackPromise(
-      fileActions.validFileType(file[0]).then(result => {
+      fileActions.validFileType(this.state.apiKey, file[0]).then(result => {
         if (!result){
           this.setState({validation: "Please use a supported file type"});
           return;
@@ -65,6 +69,14 @@ class ProcessFile extends React.Component {
                     <LoadingIndicator key={6} />
                 </div>
             </DragAndDrop>
+            <div className="api-key">
+              <form>
+                <label>
+                  API Key:
+                  <input type="text" placeholder="Api Key" onInput={this.onApiKeyChange} />
+                </label>
+              </form>
+            </div>
             <CSSTransition in={this.state.fileProcessed} timeout={{enter: 500, exit: 500}} classNames="results">
                 <RenderResults key={5} file={this.state.file} analysisReport={this.state.analysisReport} validation={this.state.validation}/>
             </CSSTransition>
