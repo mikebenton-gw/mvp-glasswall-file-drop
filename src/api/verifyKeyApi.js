@@ -9,17 +9,21 @@ const verifyApiKey = (apikey) => {
 const callVerify = (url, apikey) => {
   const promise = new Promise((resolve, reject) => {
       resolve(fetch(url, {
-        method: 'Get',
+        method: 'GET',
         headers: {
           "x-api-key": apikey
         }
       })
       .then ((response) => {
         if (response.ok) {
-          return response.json()
+          return true;
         }
         else{
-          throw new Error('Api Key is Invalid');
+          if (response.status === 429){
+            return "Api Key has run out of requests"
+          }
+          
+          return "Api Key is invalid";
         }
       }));
   });

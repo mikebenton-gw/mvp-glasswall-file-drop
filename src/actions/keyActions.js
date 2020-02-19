@@ -1,9 +1,7 @@
-import {verifyApi} from "../api/verifyApi";
+import {verifyApi} from "../api/verifyKeyApi";
 
 async function validKey(apikey) {
-    await verifyApi.verifyApiKey(apikey);
-    
-    return true;
+    return await verifyApi.verifyApiKey(apikey);    
 }
 
 export const keyActions = {

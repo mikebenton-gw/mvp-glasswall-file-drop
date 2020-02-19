@@ -360,12 +360,3 @@ th {
   right: 0;
   top: 0;
   background: transparent url(../src/img/info-icon.svg) center center no-repeat; }
-
-  .api-key {
-    padding-top: 20px;
-  }
-
-  .api-key input{
-      margin-left: 10px;
-      padding-left: 2px;
-  }

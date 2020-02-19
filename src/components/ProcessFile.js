@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "../App.css";
 import DragAndDrop from "./DragAndDrop";
 import RenderResults from "./RenderResults";
@@ -36,9 +36,9 @@ class ProcessFile extends React.Component {
     }
 
     trackPromise(
-      fileActions.validFileType(this.state.apiKey, file[0]).then(result => {
-        if (!result){
-          this.setState({validation: "Please use a supported file type"});
+      fileActions.validFileType(this.props.apiKey, file[0]).then(result => {
+        if (!result.Result){
+          this.setState({validation: result.Message});
           return;
         }
 
@@ -62,25 +62,18 @@ class ProcessFile extends React.Component {
 
   render() {
     return (
-        <div className="app-body">
+        <Fragment>
             <h1>Drag and drop a file to have it processed by the Glasswall d-FIRST Engine</h1>
             <DragAndDrop handleDrop={this.handleDrop}>
                 <div className="loading-container">
                     <LoadingIndicator key={6} />
                 </div>
             </DragAndDrop>
-            <div className="api-key">
-              <form>
-                <label>
-                  API Key:
-                  <input type="text" placeholder="Api Key" onInput={this.onApiKeyChange} />
-                </label>
-              </form>
-            </div>
+            <h4>Api Key: {this.props.apiKey}</h4>
             <CSSTransition in={this.state.fileProcessed} timeout={{enter: 500, exit: 500}} classNames="results">
                 <RenderResults key={5} file={this.state.file} analysisReport={this.state.analysisReport} validation={this.state.validation}/>
             </CSSTransition>
-        </div>
+        </Fragment>
     );
   }
 }
