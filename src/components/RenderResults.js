@@ -40,7 +40,7 @@ function RenderResults(props) {
       return (
         <section className="is-clean">
           <h1>File is clean!</h1>
-          <FileAttributes file={file} />
+          <FileAttributes file={file} fileType={fileType}/>
         </section>
       );
     }
