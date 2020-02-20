@@ -22,19 +22,27 @@ async function validFileType(apikey, file) {
 
     if (result.Status === KeyStatus.LIMITREACHED || result.Status === KeyStatus.INVALIDKEY){
         return {
-            Result: false,
+            ValidKey: false,
+            ValidFileType: false,
             Message: result.Message
         }
     }
     
-    if(unsupportedTypes.includes(result.fileType)) {
+    var message = await result.Message;
+
+    if(unsupportedTypes.includes(message.fileType)) {
         return {
-            Result: false,
+            ValidKey: true,
+            ValidFileType: false,
             Message: "Please use a supported file type"
         }
     }
 
-    return {Result: true};
+    return {
+        ValidKey: true,
+        ValidFileType: true,
+        Message: "Valid file type used"
+    };
 }
 
 export const fileActions = {

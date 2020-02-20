@@ -22,7 +22,10 @@ const callFileTypeDetection = (url, apikey, data) => {
       })
       .then ((response) => {
         if (response.ok) {
-          return response.json()
+            return{
+              Status: KeyStatus.SUCCESS,
+              Message: response.json()
+            }
         }
         else if (response.status === 429){
           return {

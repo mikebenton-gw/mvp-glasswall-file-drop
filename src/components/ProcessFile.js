@@ -37,7 +37,7 @@ class ProcessFile extends React.Component {
 
     trackPromise(
       fileActions.validFileType(this.props.apiKey, file[0]).then(result => {
-        if (!result.Result){
+        if (!result.ValidKey || !result.ValidFileType){
           this.setState({validation: result.Message});
           return;
         }
