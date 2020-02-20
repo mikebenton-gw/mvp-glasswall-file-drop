@@ -1,4 +1,4 @@
-import {statusEnum} from "../enums/statusEnum";
+import {KeyStatus} from "../enums/keyStatusEnum";
 
 const urlPrefix = 'https://72zql7ms4e.execute-api.eu-west-1.amazonaws.com/beta'
 const fileTypeDetectionSuffix = '/file-type-detection';
@@ -26,13 +26,13 @@ const callFileTypeDetection = (url, apikey, data) => {
         }
         else if (response.status === 429){
           return {
-            Status: statusEnum.status.LIMITREACHED,
+            Status: KeyStatus.LIMITREACHED,
             Message: "Api Key has run out of Requests"
           }
         }
         else if (response.status === 403){
           return {
-            Status: statusEnum.status.INVALIDKEY,
+            Status: KeyStatus.INVALIDKEY,
             Message: "Api Key is Invalid"
           }
         }

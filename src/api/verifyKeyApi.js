@@ -1,3 +1,5 @@
+import {KeyStatus} from '../enums/keyStatusEnum';
+
 const urlPrefix = 'https://72zql7ms4e.execute-api.eu-west-1.amazonaws.com/beta'
 const verifySuffix = '/verify';
 
@@ -16,14 +18,14 @@ const callVerify = (url, apikey) => {
       })
       .then ((response) => {
         if (response.ok) {
-          return true;
+          return KeyStatus.SUCCESS;
         }
         else{
           if (response.status === 429){
-            return "Api Key has run out of requests"
+            return KeyStatus.LIMITREACHED;
           }
           
-          return "Api Key is invalid";
+          return KeyStatus.INVALIDKEY;
         }
       }));
   });

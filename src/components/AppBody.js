@@ -4,7 +4,7 @@ import UnauthenticatedProcessFile from "./UnauthenticatedProcessFile";
 import {keyActions} from "../actions/keyActions";
 import {CSSTransition} from "react-transition-group";
 
-function AppBody(props) {
+function AppBody() {
 
     var [apiKey, setApiKey] = useState("")
     var [validKey, setvalidKey] = useState(false)
@@ -16,12 +16,12 @@ function AppBody(props) {
     
     var handleSubmit = event => {
         keyActions.validKey(apiKey).then(result => {
-            if (result === true){
+            if (result.ValidKey === true){
                 setvalidKey(true)
               return;
             }
     
-            setValidationErrors(result);
+            setValidationErrors(result.Message);
             return;
         })
         event.preventDefault();
@@ -37,17 +37,17 @@ function AppBody(props) {
   
     return (       
         <> 
-        <UnauthenticatedProcessFile/>
-        <div className="api-key-input">
-            <h1>Please enter a valid API Key:</h1>  
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Api Key" onChange={handleChange}/>
-                <input type="submit" value="Submit"/>
-            </form>
-        </div>
-        <div className="validationErrors">
-            <p>{validationErrors}</p>
-        </div>
+            <UnauthenticatedProcessFile/>
+            <div className="api-key-input">
+                <h1>Please enter a valid API Key:</h1>  
+                <form onSubmit={handleSubmit}>
+                    <input type="text" placeholder="Api Key" onChange={handleChange}/>
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
+            <div className="validationErrors">
+                <p>{validationErrors}</p>
+            </div>
         </>
     )
 }

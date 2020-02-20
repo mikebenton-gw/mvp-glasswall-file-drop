@@ -31,7 +31,7 @@ class App extends React.Component {
             <button className="info-button" onClick={this.toggleModal} style={{display: "none"}}></button>
           </div>
           <div className="app-body">
-          <AppBody apiKey={this.state.apiKey} validKey={this.state.validKey}/> 
+            <AppBody /> 
           </div>
         </div>
         <CSSTransition in={this.state.showModal} timeout={500} classNames="modal" unmountOnExit>
