@@ -27,7 +27,7 @@ class App extends React.Component {
       <React.Fragment>
         <div className="app">
           <div className="app-header">
-            <div className="logo"><img src={logo} alt="Logo" height="90" /></div>
+            <div className="logo"><a href="https://glasswallsolutions.com/" target="blank" ><img src={logo} alt="Logo" height="90" /></a></div>
             <button className="info-button" onClick={this.toggleModal} style={{display: "none"}}></button>
           </div>
           <ProcessFile />
