@@ -59,7 +59,7 @@ class ProcessFile extends React.Component {
   render() {
     return (
         <div className="app-body">
-            <h1>Drag and drop a file to have it processed by the Glasswall d-FIRST Engine</h1>
+            <h1>Drag and drop a file to have it processed by the Glasswall d-FIRST <sup className="trade-mark">TM</sup> Engine</h1>
             <DragAndDrop handleDrop={this.handleDrop}>
                 <div className="loading-container">
                     <LoadingIndicator key={6} />
