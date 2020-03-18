@@ -24,7 +24,7 @@ class DownloadFile extends React.Component {
     }
     return(
       <div className="download-file-button">
-        <button className="button button-filled button-icon center" onClick={this.getProtectedFile}>Download Protected File</button>
+        <button className="button button-filled button-icon left" onClick={this.getProtectedFile}>Download Protected File</button>
       </div>
       )
     }

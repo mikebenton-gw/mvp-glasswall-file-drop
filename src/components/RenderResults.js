@@ -1,11 +1,13 @@
 import React from "react";
 import RenderAnalysis from "./RenderAnalysis";
 import DownloadFile from "./DownloadFile";
+import DownloadAnalysisReport from "./DownloadAnalysisReport";
 import FileAttributes from "./FileAttributes";
 
 function RenderResults(props) {
   const file = props.file;
   const analysisReport = props.analysisReport;
+  const analysisReportString = props.analysisReportString;
   const validation = props.validation;
 
   if (validation !== null && validation !== undefined && validation !== "") {
@@ -26,6 +28,7 @@ function RenderResults(props) {
       return (
         <div className="analysis-results">
           <DownloadFile file={file} hasIssues={issues.length} />
+          <DownloadAnalysisReport report={analysisReportString} filename={file.name} />
           <br />
           <FileAttributes file={file} fileType={fileType} />
           <br />
@@ -39,6 +42,7 @@ function RenderResults(props) {
     } else {
       return (
         <section className="is-clean">
+          <DownloadAnalysisReport report={analysisReportString} filename={file.name} />
           <h1>File is clean!</h1>
           <FileAttributes file={file} fileType={fileType} />
         </section>

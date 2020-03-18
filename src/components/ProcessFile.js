@@ -11,6 +11,7 @@ import {fileActions} from "../actions/fileActions";
 const initialState = {
   file: "",
   analysisReport: "",
+  analysisReportString: "",
   validation: "",
   fileProcessed: false,
   loading: false
@@ -46,6 +47,7 @@ class ProcessFile extends React.Component {
 
           this.setState({
             analysisReport: xml,
+            analysisReportString: result.analysisReport,
             file: file[0],
             fileProcessed: true
           });
@@ -66,7 +68,7 @@ class ProcessFile extends React.Component {
                 </div>
             </DragAndDrop>
             <CSSTransition in={this.state.fileProcessed} timeout={{enter: 500, exit: 500}} classNames="results">
-                <RenderResults key={5} file={this.state.file} analysisReport={this.state.analysisReport} validation={this.state.validation}/>
+                <RenderResults key={5} file={this.state.file} analysisReport={this.state.analysisReport} analysisReportString={this.state.analysisReportString} validation={this.state.validation}/>
             </CSSTransition>
         </div>
     );
