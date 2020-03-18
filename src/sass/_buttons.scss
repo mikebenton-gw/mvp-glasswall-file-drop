@@ -28,10 +28,7 @@
     color: $white;
     border-radius: 3px;
     transition: all 0.3s;
-  
-    &.left {
-      margin-right: auto;
-    }
+
   
     &:hover {
       box-shadow: $boxShadow1;
@@ -61,5 +58,29 @@
   .button-filled {
     background-color: $buttonBGColour;
 
+  }
+
+  .download-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+
+    button {
+      margin: 2rem 1rem;
+    }
+  }
+
+
+  @media only screen and (max-width: 640px) {
+    
+    .download-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  
+      button {
+        margin: 2rem 1rem;
+      }
+    }
   }
   
