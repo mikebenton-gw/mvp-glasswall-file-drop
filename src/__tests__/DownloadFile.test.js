@@ -16,13 +16,6 @@ describe("DownloadFile", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("shows message when file has issues", () => {
-    const wrapper = shallow(<DownloadFile hasIssues={true} />);
-    expect(
-      wrapper.contains(<h1>Unable to protect file due to structual issues</h1>)
-    ).toBe(true);
-  });
-
   it("shows button when file has been protected", () => {
     const wrapper = shallow(<DownloadFile hasIssues={false} />);
     expect(wrapper.contains(<button>Download Protected File</button>));
