@@ -14,9 +14,7 @@ class DownloadAnalysisReport extends React.Component {
 
   render() {
     return(
-      <div className="download-analysis-button">
         <button className="button button-filled button-icon right" onClick={this.getAnalysisReport}>Download Analysis Report</button>
-      </div>
       )
     }
 }
