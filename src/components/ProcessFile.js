@@ -43,11 +43,11 @@ class ProcessFile extends React.Component {
       })
       .then(result => {
           var XMLParser = require("react-xml-parser");
-          var xml = new XMLParser().parseFromString(result.analysisReport);
+          var xml = new XMLParser().parseFromString(result);
 
           this.setState({
             analysisReport: xml,
-            analysisReportString: result.analysisReport,
+            analysisReportString: result,
             file: file[0],
             fileProcessed: true
           });
