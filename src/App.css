@@ -8,6 +8,12 @@
   font-weight: normal;
   font-style: normal; }
 
+@font-face {
+  font-family: 'nunito_sansregular';
+  src: url("fonts/nunitosans-regular-webfont.woff2") format("woff2"), url("fonts/nunitosans-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
 button {
   position: relative;
   overflow: hidden;
@@ -100,7 +106,7 @@ button {
 
 .modal-header {
   height: 5rem;
-  background-color: #eef0f1;
+  background-color: white;
   color: #0c3450;
   border-radius: 0.6rem;
   border-bottom-left-radius: 0;
@@ -153,7 +159,7 @@ button {
   justify-content: flex-end;
   height: 7rem;
   padding: 2rem 2rem 0;
-  background-color: #eef0f1;
+  background-color: white;
   transition: all 0.2s 0.2s; }
   .modal-footer.single-central-button {
     justify-content: space-around;
@@ -175,9 +181,9 @@ button {
 html,
 body {
   font-size: 62.5%;
-  font-family: 'robotoregular', sans-serif;
+  font-family: 'nunito_sansregular', sans-serif;
   color: #636363;
-  background: #e6e9ea; }
+  background: #fafaf9; }
 
 .results-enter {
   opacity: 0.01;
@@ -204,7 +210,7 @@ body {
   height: 40vmin; }
 
 .app-header {
-  height: 10rem;
+  height: 12rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -219,10 +225,37 @@ body {
   background: linear-gradient(to left, #196480, #0c3450);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 
+.app-header-inner {
+  display: flex;
+  width: calc(100% - 8rem);
+  max-width: 124rem;
+  margin: 0 auto;
+  padding: 0 4rem; }
+
+nav {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end; }
+
+.app-menu-list {
+  padding-top: 3.5rem; }
+  .app-menu-list li {
+    color: white;
+    display: inline-block; }
+    .app-menu-list li a {
+      color: white;
+      font-size: 1.5rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 1.8rem 1.6rem;
+      transition: all 0.2s; }
+      .app-menu-list li a:hover {
+        opacity: 0.7; }
+
 .app-body {
-  height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
+  min-height: 71vh;
   align-items: center;
   font-size: calc(12px);
   color: #636363;
@@ -270,6 +303,9 @@ body {
 .analysis-results {
   padding-bottom: 4rem; }
 
+.is-clean {
+  padding-top: 3rem; }
+
 .table-container {
   min-width: 30rem;
   margin: 0 1rem;
@@ -308,7 +344,7 @@ th {
   width: 100%;
   height: 100%;
   opacity: 1;
-  background-color: #e6e9ea;
+  background-color: #fafaf9;
   border-radius: 3rem; }
 
 .spinner {
@@ -373,3 +409,14 @@ th {
   right: 0;
   top: 0;
   background: transparent url(../src/img/info-icon.svg) center center no-repeat; }
+
+.app-footer {
+  height: 30rem;
+  background: #1b5c7e;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #196480, #0c3450);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #196480, #0c3450);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to left, #196480, #0c3450);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
