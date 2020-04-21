@@ -209,6 +209,39 @@ a {
 
 .app {
   text-align: center; }
+  .app.show-menu .app-header {
+    display: block;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to left, #124163, #31536b) !important;
+    z-index: 99; }
+  .app.show-menu .logo {
+    display: none; }
+  .app.show-menu .app-header-inner {
+    margin: 0;
+    padding: 0; }
+  .app.show-menu nav {
+    display: block;
+    position: fixed;
+    width: 100%;
+    z-index: 99; }
+    .app.show-menu nav li {
+      display: block;
+      margin-bottom: 4rem; }
+      .app.show-menu nav li a {
+        font-size: 2.6rem;
+        line-height: 5rem; }
+  .app.show-menu .menu-button {
+    position: absolute;
+    top: 0;
+    right: 4rem;
+    height: 2rem;
+    width: 2.5rem;
+    background: transparent url("img/menu-icon-close.svg") center center no-repeat; }
+  .app.show-menu .app-menu-list {
+    display: block;
+    padding-top: 20vh; }
 
 .app-logo {
   height: 40vmin; }
@@ -251,6 +284,12 @@ nav {
       transition: all 0.2s; }
       .app-menu-list li a:hover {
         opacity: 0.7; }
+
+.menu-button {
+  height: 2rem;
+  width: 2.5rem;
+  background: transparent url("img/menu-icon.svg") center center no-repeat;
+  display: none; }
 
 .app-body {
   position: relative;
@@ -497,3 +536,14 @@ th {
     transition: all 0.2s; }
     .app-sub-footer a:hover {
       opacity: 0.7; }
+
+@media only screen and (max-width: 1024px) {
+  .menu-button {
+    display: block;
+    margin-top: 3.5rem; }
+  .app-menu-list {
+    display: none; }
+  .app-footer-menu {
+    display: none; }
+  .app-header-inner, .app-footer-inner {
+    padding: 0; } }

@@ -18,6 +18,12 @@ class App extends React.Component {
     });
   };
 
+  toggleMenu = () => {
+    this.setState({
+      showMenu: !this.state.showMenu
+    });
+  };
+
   handleContainerClick = event => {
     event.stopPropagation();
   };
@@ -25,11 +31,12 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="app">
+        <div className={`app ${this.state.showMenu ? "show-menu" : ""}`}>
           <div className="app-header">
             <div className="app-header-inner">
               <div className="logo"><a href="https://glasswallsolutions.com/" target="blank" ><img src={logo} alt="Logo" height="100" /></a></div>
               <nav>
+              <button className="menu-button" onClick={this.toggleMenu}></button>
                 <button className="info-button" onClick={this.toggleModal} style={{display: "none"}}></button>
                 <ul className="app-menu-list">
                     <li><a href="">Product Info</a></li>
