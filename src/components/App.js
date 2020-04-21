@@ -28,7 +28,7 @@ class App extends React.Component {
         <div className="app">
           <div className="app-header">
             <div className="app-header-inner">
-              <div className="logo"><a href="https://glasswallsolutions.com/" target="blank" ><img src={logo} alt="Logo" height="97" /></a></div>
+              <div className="logo"><a href="https://glasswallsolutions.com/" target="blank" ><img src={logo} alt="Logo" height="100" /></a></div>
               <nav>
                 <button className="info-button" onClick={this.toggleModal} style={{display: "none"}}></button>
                 <ul className="app-menu-list">
@@ -43,7 +43,7 @@ class App extends React.Component {
           <div className="app-footer">
             <div className="app-footer-inner">
               <section className="app-footer-left">
-                <div className="logo"><a href="https://glasswallsolutions.com/" target="blank" ><img src={logo} alt="Logo" height="97" /></a></div>
+                <div className="logo"><a href="https://glasswallsolutions.com/" target="blank" ><img src={logo} alt="Logo" height="100" /></a></div>
                 <span class="copyright">© Copyright 2020 - Glasswall Solutions Ltd. All Rights Reserved</span>
                 <div class="social-menu">
                   <a href="https://twitter.com/GlasswallGlobal" target="_blank">

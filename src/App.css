@@ -238,7 +238,7 @@ nav {
   justify-content: flex-end; }
 
 .app-menu-list {
-  padding-top: 3.5rem; }
+  padding-top: 3.7rem; }
   .app-menu-list li {
     color: white;
     display: inline-block; }
@@ -426,17 +426,19 @@ th {
 
 .app-footer-inner {
   box-sizing: border-box;
-  padding-top: 5rem;
+  padding-top: 4rem;
   display: flex; }
 
 .app-footer-left {
   text-align: left;
-  flex: 2; }
+  flex: 2;
+  padding-top: 2rem;
+  padding-right: 9rem; }
 
 .app-footer-menu {
   flex: 1;
   text-align: left;
-  padding-right: 6rem; }
+  padding: 0.6rem 2rem 4rem; }
   .app-footer-menu ul {
     color: white;
     font-size: 1.5rem;
@@ -445,9 +447,9 @@ th {
     list-style: none; }
   .app-footer-menu li {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     line-height: 2rem;
-    padding-bottom: 2rem; }
+    padding-bottom: 1.6rem; }
     .app-footer-menu li a {
       transition: all 0.2s; }
       .app-footer-menu li a:hover {
@@ -467,15 +469,17 @@ th {
   color: white;
   font-size: 1.5rem;
   font-weight: 800;
+  letter-spacing: 0.1rem;
   text-decoration: none;
   text-transform: uppercase;
-  padding: 2.4rem 0; }
+  padding: 2.8rem 0; }
 
 .copyright {
   display: inline-block;
   font-size: 1.1rem;
   line-height: 2.4rem;
   width: 72%;
+  margin-top: 1rem;
   text-align: left;
   color: white; }
 
